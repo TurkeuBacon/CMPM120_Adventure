@@ -147,4 +147,69 @@ class AdventureScene extends Phaser.Scene {
     onEnter() {
         console.warn('This AdventureScene did not implement onEnter():', this.constructor.name);
     }
+
+    shakeObject(obj)
+    {
+        this.add.tween({
+            targets: obj,
+            angle: 15,
+            duration: 250,
+            yoyo:true,
+            ease: Phaser.Math.Easing.Quadratic.InOut
+        });
+    }
+
+    waddleTo(waddler, target, duration, waddleDuration, onComplete)
+    {
+        this.startAngle = waddler.angle;
+        this.add.tween({
+            targets: waddler,
+            duration: waddleDuration,
+            angle: -15,
+            ease: Phaser.Math.Easing.Quadratic.Out,
+            onComplete: ()=>{
+                this.waddleTween = this.add.tween({
+                    targets: waddler,
+                    duration: waddleDuration,
+                    angle: 15,
+                    ease: Phaser.Math.Easing.Quadratic.InOut,
+                    yoyo: true,
+                    repeat: -1
+                });
+            }
+        });
+        this.add.tween({
+            targets: waddler,
+            x: target.x,
+            y: target.y,
+            duration: duration,
+            ease: Phaser.Math.Easing.Quadratic.InOut,
+            onComplete: ()=>{
+                this.waddleTween.remove();
+                waddler.angle = this.startAngle;
+                onComplete();
+            }
+        });
+    }
+    ejectItem(item, sprite, startPos) {
+        sprite.setPosition(startPos.x, startPos.y)
+        if(this.hasItem(item)) {
+            this.loseItem(item);
+            this.spinTween = this.add.tween({
+                targets: sprite,
+                angle: 359,
+                duration: 200,
+                repeat: -1
+            });
+            this.add.tween({
+                targets: sprite,
+                x: 0,
+                y: 0,
+                duration: 200,
+                onComplete: ()=>{
+                    this.spinTween.remove();
+                }
+            });
+        }
+    }
 }

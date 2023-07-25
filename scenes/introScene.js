@@ -15,6 +15,7 @@ class IntroScene extends Phaser.Scene
 
     create()
     {
+        // this.scene.start('Room1');
         this.screenSize = {
             width: this.sys.game.canvas.width,
             height: this.sys.game.canvas.height
@@ -75,6 +76,7 @@ class IntroScene extends Phaser.Scene
                 alpha: 1,
                 onComplete: ()=>{
                     //Load Next Scene
+                    this.scene.start('Room1');
                 }
             });
         });

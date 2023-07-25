@@ -126,7 +126,7 @@ const game = new Phaser.Game({
         height: 1080
     },
     pixelArt: true,
-    scene: [IntroScene],
+    scene: [IntroScene, Room1, Room2],
     title: "Adventure Game",
 });
 
