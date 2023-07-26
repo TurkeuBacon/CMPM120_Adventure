@@ -15,21 +15,23 @@ class AdventureScene extends Phaser.Scene {
         this.w = this.game.config.width;
         this.h = this.game.config.height;
         this.s = this.game.config.width * 0.01;
+        const SIDEBAR__PERCENT = 0.25;
+        const SIDEBAR_START_PERCENT = 1 - SIDEBAR__PERCENT;
 
         this.cameras.main.setBackgroundColor('#444');
         this.cameras.main.fadeIn(this.transitionDuration, 0, 0, 0);
 
-        this.add.rectangle(this.w * 0.75, 0, this.w * 0.25, this.h).setOrigin(0, 0).setFillStyle(0);
-        this.add.text(this.w * 0.75 + this.s, this.s)
+        this.add.rectangle(this.w * SIDEBAR_START_PERCENT, 0, this.w * SIDEBAR__PERCENT, this.h).setOrigin(0, 0).setFillStyle(0);
+        this.add.text(this.w * SIDEBAR_START_PERCENT + this.s, this.s)
             .setText(this.name)
             .setStyle({ fontSize: `${3 * this.s}px` })
-            .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
+            .setWordWrapWidth(this.w * SIDEBAR__PERCENT - 2 * this.s);
         
-        this.messageBox = this.add.text(this.w * 0.75 + this.s, this.h * 0.33)
+        this.messageBox = this.add.text(this.w * SIDEBAR_START_PERCENT + this.s, this.h * 0.33)
             .setStyle({ fontSize: `${2 * this.s}px`, color: '#eea' })
-            .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
+            .setWordWrapWidth(this.w * SIDEBAR__PERCENT - 2 * this.s);
 
-        this.inventoryBanner = this.add.text(this.w * 0.75 + this.s, this.h * 0.66)
+        this.inventoryBanner = this.add.text(this.w * SIDEBAR_START_PERCENT + this.s, this.h * 0.66)
             .setStyle({ fontSize: `${2 * this.s}px` })
             .setText("Inventory")
             .setAlpha(0);

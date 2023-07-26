@@ -9,11 +9,12 @@ class Room1 extends AdventureScene
         this.load.path = './assets/';
         this.load.image('room1_background', 'Room1.png');
         this.load.spritesheet('rocks', 'Rocks.png', {frameWidth: 50, frameHeight: 50});
-        this.load.image('spoon', 'spoon.png');
+        this.load.image('spoon', 'Spoon.png');
     }
 
     onEnter()
     {
+        this.gotoScene('room2')
         this.screenEdge = this.w * .75;
         this.add.image(this.screenEdge, 0, 'room1_background')
             .setScale(5)
@@ -44,7 +45,7 @@ class Room1 extends AdventureScene
                 .on('pointerdown', () => {
                     if(this.hasItem('spoon'))
                     {
-                        this.ejectItem('spoon', this.add.sprite(500, 500, 'spoon'), {x: this.richard.x, y:this.richard.y});
+                        this.loseItem('spoon');
                         this.waddleTo(this.richard, {x:this.w*0.75-300, y:500}, 1000, 100, ()=>{
                             for(let i = 0; i < this.rockSprites.length; i++)
                             {
