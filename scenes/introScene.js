@@ -15,7 +15,6 @@ class IntroScene extends Phaser.Scene
 
     create()
     {
-        this.scene.start('Room1');
         // this.scene.start('Room1');
         this.screenSize = {
             width: this.sys.game.canvas.width,

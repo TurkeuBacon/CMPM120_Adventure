@@ -14,7 +14,7 @@ class Room1 extends AdventureScene
 
     onEnter()
     {
-        this.gotoScene('room2')
+        // this.gotoScene('room2')
         this.screenEdge = this.w * .75;
         this.add.image(this.screenEdge, 0, 'room1_background')
             .setScale(5)

@@ -13,6 +13,7 @@ class Room3 extends AdventureScene
 
     onEnter()
     {
+        // this.gotoScene('room4');
         this.progress = 0;
         this.add.image(0, 0, 'room3_background').setOrigin(0, 0).setScale(1).setDepth(-2);
         this.richard = this.add.sprite(200, 625, 'richard')
@@ -67,7 +68,8 @@ class Room3 extends AdventureScene
     }
 
     fall() {
-        this.ejectItem("dirty spoon", this.spoon = this.add.sprite(0, 0, 'spoon').setScale(5), {x: this.richard.x, y: this.richard.y});
+        this.ejectItem("clean spoon", this.spoon = this.add.sprite(0, 0, 'spoon').setScale(5), {x: this.richard.x, y: this.richard.y});
+        this.loseItem("avocado (eaten)")
         this.showMessage("AAAAHHHHHHHHH!!!!!!");
         this.add.tween({
             targets: this.rocks[this.rocks.length-1],

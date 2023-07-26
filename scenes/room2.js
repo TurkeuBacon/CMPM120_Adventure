@@ -14,7 +14,7 @@ class Room2 extends AdventureScene
 
     onEnter()
     {
-        this.gotoScene('room3');
+        // this.gotoScene('room3');
         this.gainItem('dirty spoon');
         this.add.image(0, 0, 'room2_background').setOrigin(0, 0).setScale(5).setDepth(-1);
         this.richard = this.add.sprite(200, this.h/1.5, 'richard')
